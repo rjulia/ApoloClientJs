@@ -8,8 +8,8 @@ import Title from "../components/title/Title";
 const Loading = <h1>Cargando</h1>;
 
 const Clients = () => (
-  <Query query={CLIENTS_QUERY}>
-    {({ loading, error, data }) => {
+  <Query query={CLIENTS_QUERY} pollInterval={2000}>
+    {({ loading, error, data, starPolling, stopPolling }) => {
       if (loading) return Loading;
       if (error) return `Error: ${error.message}`;
       console.log(data);

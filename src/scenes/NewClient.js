@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Title from "../components/title/Title";
+import {Title, Input} from "../components/Index.components";
 import { NEW_CLIENT} from '../services/mutations/index.mutations';
 import { Mutation } from "react-apollo";
 
@@ -20,7 +20,8 @@ export default class NewClient extends Component {
         tipo: '',
         error: false,
         show: false,
-        hasError: false
+        hasError: false,
+        emails: []
             
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -30,9 +31,40 @@ export default class NewClient extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
+    // this.setState({
+    //   [name]: value
+    // });
+    this.setState(
+      prevState => ({    
+        ...prevState.newUser,
+        [name]: value      
+      }),
+      () => console.log(this.state.newUser)
+    );
+  }
+  newFiled = () => {
     this.setState({
-      [name]: value
-    });
+      emails: this.state.emails.concat([{email:''}])
+    })
+  }
+  deleteFieldEmail = i => () =>{
+    this.setState({
+      emails: this.state.emails.filter((eamil, index)=> i !== index)
+    })
+  }
+
+  readEmail = i => e => {
+    const newEmail = this.state.emails.map ((email, index)=>{
+        if(i !== index) return email;
+        return {
+          ...email,
+          email: e.target.value
+        }
+    })
+    this.setState({
+      emails: newEmail
+    })
+    console.log(this.state.emails)
   }
 
   render() {
@@ -80,65 +112,72 @@ export default class NewClient extends Component {
                 })
               }}>
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label>First Name</label>
-                  <input
-                    type="text"
-                    name="nombre"
+                <Input
+                    inputtype={"text"}
+                    title={"First Name"}
+                    name={"nombre"}
+                    param={"form-group col-md-6"}
                     value={this.state.nombre}
+                    placeholder={"Name"}
                     onChange={this.handleInputChange}
-                    className="form-control"
-                    placeholder="Nombre"
-                  />
-                </div>
-                <div className="form-group col-md-6">
-                  <label>Surname</label>
-                  <input
-                    type="text"
-                    name="apellido"
+                />{" "}
+                <Input
+                    inputtype={"text"}
+                    title={"Surname"}
+                    name={"apellido"}
+                    param={"form-group col-md-6"}
                     value={this.state.apellido}
+                    placeholder={"Surname"}
                     onChange={this.handleInputChange}
-                    className="form-control"
-                    placeholder="Apellido"
-                  />
-                </div>
+                />{" "}
               </div>
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label>Company</label>
-                  <input
-                    type="text"
-                    name="empresa"
+                <Input
+                    inputtype={"text"}
+                    title={"Company"}
+                    name={"empresa"}
+                    param={"form-group col-md-12"}
                     value={this.state.empresa}
+                    placeholder={"Company"}
                     onChange={this.handleInputChange}
-                    className="form-control"
-                    placeholder="Empresa"
-                  />
-                </div>
-                <div className="form-group col-md-6">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                    className="form-control"
-                    placeholder="Email"
-                  />
+                />{" "}
+                
+                {this.state.emails.map((input, index) =>(
+                  <div key={index} className="form-group col-md-12">
+                    <label>Email: {index + 1}</label>
+                    <div className="input-group">
+                      <input
+                        type="email"
+                        name="email"
+                        // value={this.state.email}
+                        onChange={this.readEmail(index)}
+                        className="form-control"
+                        placeholder="Email"
+                      />
+                      <div className="input-group-append"> 
+                        <button 
+                        onClick={this.deleteFieldEmail(index)}
+                        type="button"
+                        className="btn btn-danger"> Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                <div className="form-group d-flex justify-content-center col-md-12">
+                  <button onClick={this.newFiled}type="button" className="btn btn-warning">Add Email</button>
                 </div>
               </div>
               <div className="form-row">
-                <div className="form-group col-md-6">
-                  <label>Years</label>
-                  <input
-                    type="text"
-                    name="edad"
+                <Input
+                    inputtype={"text"}
+                    title={"Years"}
+                    name={"edad"}
+                    param={"form-group col-md-6"}
                     value={this.state.edad}
+                    placeholder={"Years"}
                     onChange={this.handleInputChange}
-                    className="form-control"
-                    placeholder="Edad"
-                  />
-                </div>
+                />{" "}
+
                 <div className="form-group col-md-6">
                   <label>type of Client</label>
                   <select 
