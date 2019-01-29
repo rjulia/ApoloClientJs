@@ -46,7 +46,9 @@ export default class NewClient extends Component {
         <div className="row justify-content-center">
           <Mutation 
             mutation={NEW_CLIENT}
-            onCompleted={() => this.props.history.push('/')}
+            onCompleted={() => this.setState({
+              show: true
+            })}
             onError = {()=> this.setState({hasError: true})}>
             {setClient => (
                
@@ -62,8 +64,7 @@ export default class NewClient extends Component {
                   return
                 }
                 this.setState({
-                    error: false,
-                    show: true
+                    error: false
                 })
                 const input = {
                   nombre,
@@ -162,7 +163,12 @@ export default class NewClient extends Component {
           show={this.state.show}
           title="GOOD!"
           text="The client was saved succesfull"
-          onConfirm={() => this.setState({ show: false })}
+          onConfirm={
+            () => {
+              this.setState({ show: false })
+              this.props.history.push('/')
+            }
+          }
         />
         <SweetError
           show={this.state.hasError}
