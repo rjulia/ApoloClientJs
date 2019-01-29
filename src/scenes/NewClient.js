@@ -6,6 +6,7 @@ import { Mutation } from "react-apollo";
 import { withSwalInstance } from 'sweetalert2-react';
 import swal from 'sweetalert2';
 const SweetAlert = withSwalInstance(swal);
+const SweetError = withSwalInstance(swal);
 
 export default class NewClient extends Component {
   constructor(props) {
@@ -18,7 +19,8 @@ export default class NewClient extends Component {
         edad: '',
         tipo: '',
         error: false,
-        show: false
+        show: false,
+        hasError: false
             
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -42,7 +44,10 @@ export default class NewClient extends Component {
         <Title title="New client" />
         {respuesta}
         <div className="row justify-content-center">
-          <Mutation mutation={NEW_CLIENT}>
+          <Mutation 
+            mutation={NEW_CLIENT}
+            onCompleted={() => this.props.history.push('/')}
+            onError = {()=> this.setState({hasError: true})}>
             {setClient => (
                
             <form 
@@ -75,7 +80,7 @@ export default class NewClient extends Component {
               }}>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Nombre</label>
+                  <label>First Name</label>
                   <input
                     type="text"
                     name="nombre"
@@ -86,7 +91,7 @@ export default class NewClient extends Component {
                   />
                 </div>
                 <div className="form-group col-md-6">
-                  <label>Apellido</label>
+                  <label>Surname</label>
                   <input
                     type="text"
                     name="apellido"
@@ -99,7 +104,7 @@ export default class NewClient extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Empresa</label>
+                  <label>Company</label>
                   <input
                     type="text"
                     name="empresa"
@@ -123,7 +128,7 @@ export default class NewClient extends Component {
               </div>
               <div className="form-row">
                 <div className="form-group col-md-6">
-                  <label>Edad</label>
+                  <label>Years</label>
                   <input
                     type="text"
                     name="edad"
@@ -134,7 +139,7 @@ export default class NewClient extends Component {
                   />
                 </div>
                 <div className="form-group col-md-6">
-                  <label>Tipo Cliente</label>
+                  <label>type of Client</label>
                   <select 
                     name="tipo" 
                     className="form-control"
@@ -147,7 +152,7 @@ export default class NewClient extends Component {
                 </div>
               </div>
               <button type="submit" className="btn btn-success float-right">
-                Agregar cliente
+                  ADD CLIENT
               </button>
             </form>
             )}
@@ -158,6 +163,13 @@ export default class NewClient extends Component {
           title="GOOD!"
           text="The client was saved succesfull"
           onConfirm={() => this.setState({ show: false })}
+        />
+        <SweetError
+          show={this.state.hasError}
+          title="HEY!"
+          type= 'warning'
+          text="Something happend in Data Base"
+          onConfirm={() => this.setState({ hasError: false })}
         />
       </Fragment>
     );
