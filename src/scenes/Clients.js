@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import { Query } from "react-apollo";
 import { Link } from "react-router-dom";
 //queries
-import { CLIENTS_QUERY } from "../queries/indexQuery";
-import Title from "../components/ui/Title";
+import { CLIENTS_QUERY } from "../services/queries/index.query";
+import Title from "../components/title/Title";
 
 const Loading = <h1>Cargando</h1>;
 

@@ -7,6 +7,5 @@ export const CLIENTS_QUERY = gql`{
       nombre
       apellido
       empresa
-      edad
     }
 }`
