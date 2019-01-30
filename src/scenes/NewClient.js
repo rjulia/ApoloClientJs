@@ -15,7 +15,6 @@ export default class NewClient extends Component {
         nombre: '',
         apellido: '',
         empresa: '',
-        email: '',
         edad: '',
         tipo: '',
         error: false,
@@ -36,10 +35,10 @@ export default class NewClient extends Component {
     // });
     this.setState(
       prevState => ({    
-        ...prevState.newUser,
+        ...prevState,
         [name]: value      
       }),
-      () => console.log(this.state.newUser)
+      () => console.log(this.state)
     );
   }
   newFiled = () => {
@@ -64,7 +63,6 @@ export default class NewClient extends Component {
     this.setState({
       emails: newEmail
     })
-    console.log(this.state.emails)
   }
 
   render() {
@@ -88,8 +86,9 @@ export default class NewClient extends Component {
               className="col-md-8 m-3"
               onSubmit={event =>{
                 event.preventDefault();
-                const {nombre, apellido, empresa, email, edad, tipo} = this.state;
-                if(nombre === '' || apellido === '' || email === '' || tipo === '' || empresa === '' || edad === ''){
+                const {nombre, apellido, empresa, edad, tipo} = this.state;
+                const {emails} = this.state
+                if(nombre === '' || apellido === '' || tipo === '' || empresa === '' || edad === ''){
                   this.setState({
                     error: true
                   })
@@ -102,7 +101,7 @@ export default class NewClient extends Component {
                   nombre,
                   apellido,
                   empresa,
-                  email,
+                  emails,
                   tipo,
                   edad: Number(edad)
                 };
