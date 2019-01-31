@@ -13,6 +13,7 @@ export const CLIENTS_QUERY = gql`{
 export const CLIENT_QUERY = gql`
   query getClient($id: ID) {
     getClient (id: $id) {
+      id
       nombre
       apellido
       tipo
@@ -22,10 +23,6 @@ export const CLIENT_QUERY = gql`
       }
       empresa
       id
-      pedidos{
-        precio
-        Producto
-      }
     }
 }`
 

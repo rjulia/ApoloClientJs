@@ -13,10 +13,11 @@ export default class EditClient extends Component {
         <Title title="Edit client" />
         <div className=" row justify-content-center">
           <Query query={CLIENT_QUERY} variables={{ id }}>
-            {({ loading, error, data }) => {
+            {({ loading, error, data, refetch }) => {
               if (loading) return <Spinner color={"#18BC9C"} />;
               if (error) return `Error: ${error.message}`;
-              return <FormEditClient />;
+              console.log(data.getClient)
+              return <FormEditClient refetch={refetch} client={data.getClient}/>;
             }}
           </Query>
         </div>
