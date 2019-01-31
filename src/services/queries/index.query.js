@@ -8,6 +8,7 @@ export const CLIENTS_QUERY = gql`{
       apellido
       empresa
     }
+  totalClients
 }`
 
 export const CLIENT_QUERY = gql`

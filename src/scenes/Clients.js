@@ -6,19 +6,29 @@ import { Link } from "react-router-dom";
 import { CLIENTS_QUERY } from "../services/queries/index.query";
 import { DELETE_CLIENT } from "../services/mutations/index.mutations";
 
-import Title from "../components/title/Title";
+import {Title, Pagination } from "../components/Index.components";
 
-import { withSwalInstance } from "sweetalert2-react";
 import swal from "sweetalert2";
-const SweetAlert = withSwalInstance(swal);
 
 const Loading = <h1>Cargando</h1>;
 
 class Clients extends React.Component {
+
+  limit = 10;
   state = {
     show: false,
+    pager: {
+      current: 0,
+      offset: 1 
+    }
   };
+  prevPage = () => {
+    console.log('prev')
+  }
 
+  nextPage = () => {
+    console.log('next')
+  }
   render() {
     return (
       <Query query={CLIENTS_QUERY} pollInterval={2000}>
@@ -26,6 +36,7 @@ class Clients extends React.Component {
           if (loading) return Loading;
           if (error) return `Error: ${error.message}`;
           const list = data.getClients;
+          console.log(data)
           return (
             <Fragment>
               <Title title="Listado De clientes" />
@@ -84,6 +95,13 @@ class Clients extends React.Component {
                   );
                 })}
               </ul>
+               <Pagination
+                  current={this.state.pager.current}
+                  totalClients={data.totalClients}
+                  limit={this.limit}
+                  prevPage={this.prevPage}
+                  nextPage={this.nextPage}
+               />
             </Fragment>
           );
         }}
