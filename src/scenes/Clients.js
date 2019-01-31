@@ -14,24 +14,36 @@ const Loading = <h1>Cargando</h1>;
 
 class Clients extends React.Component {
 
-  limit = 10;
+  limit = 5;
   state = {
     show: false,
     pager: {
-      current: 0,
+      current: 1,
       offset: 1 
     }
   };
   prevPage = () => {
     console.log('prev')
+    this.setState({
+        pager: {
+          offset: this.state.pager.offset - this.limit,
+          current: this.state.pager.current - 1
+        }
+    })
   }
 
   nextPage = () => {
     console.log('next')
+    this.setState({
+        pager: {
+          offset: this.state.pager.offset + this.limit,
+          current: this.state.pager.current + 1
+        }
+    })
   }
   render() {
     return (
-      <Query query={CLIENTS_QUERY} pollInterval={2000}>
+      <Query query={CLIENTS_QUERY} pollInterval={2000} variables={{limit: this.limit, offset: this.state.pager.offset}}>
         {({ loading, error, data, starPolling, stopPolling }) => {
           if (loading) return Loading;
           if (error) return `Error: ${error.message}`;
