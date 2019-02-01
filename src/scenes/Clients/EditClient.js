@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Query } from "react-apollo";
-import { Title, Spinner, FormEditClient } from "../components/Index.components";
+import { Title, Spinner, FormEditClient } from "../../components/Index.components";
 
-import { CLIENT_QUERY } from "../services/queries/index.query";
+import { CLIENT_QUERY } from "../../services/queries/index.query";
 
 export default class EditClient extends Component {
   render() {

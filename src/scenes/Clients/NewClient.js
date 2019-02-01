@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import {Title, Input} from "../components/Index.components";
-import { NEW_CLIENT} from '../services/mutations/index.mutations';
+import {Title, Input} from "../../components/Index.components";
+import { NEW_CLIENT} from '../../services/mutations/index.mutations';
 import { Mutation } from "react-apollo";
 
 import { withSwalInstance } from 'sweetalert2-react';

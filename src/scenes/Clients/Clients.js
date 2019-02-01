@@ -3,10 +3,10 @@ import { Query, Mutation } from "react-apollo";
 import { Link } from "react-router-dom";
 
 //queries
-import { CLIENTS_QUERY } from "../services/queries/index.query";
-import { DELETE_CLIENT } from "../services/mutations/index.mutations";
+import { CLIENTS_QUERY } from "../../services/queries/index.query";
+import { DELETE_CLIENT } from "../../services/mutations/index.mutations";
 
-import {Title, Pagination } from "../components/Index.components";
+import {Title, Pagination } from "../../components/Index.components";
 
 import swal from "sweetalert2";
 
@@ -48,7 +48,6 @@ class Clients extends React.Component {
           if (loading) return Loading;
           if (error) return `Error: ${error.message}`;
           const list = data.getClients;
-          console.log(data)
           return (
             <Fragment>
               <Title title="Listado De clientes" />

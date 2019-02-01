@@ -2,9 +2,8 @@ import React, { Component, Fragment } from "react";
 import { ApolloProvider } from "react-apollo";
 import ApolloCliente, { InMemoryCache } from "apollo-boost";
 import Header from "./scenes/header/Header";
-import Clients from "./scenes/Clients";
-import NewClient from "./scenes/NewClient";
-import EditClient from "./scenes/EditClient";
+import {Clients, NewClient, EditClient, NewProduct } from "./scenes/index.scenes";
+
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -30,6 +29,7 @@ class App extends Component {
                 <Route exact path="/" component={Clients}/>
                 <Route exact path="/client/new" component={NewClient}/>
                 <Route exact path="/client/edit/:id" component={EditClient}/>
+                <Route exact path="/product/new" component={NewProduct}/>
               </Switch>
             </div>
           </Fragment>
