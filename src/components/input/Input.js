@@ -4,9 +4,9 @@ const Input = props => {
   //console.log(props.value);
   return (
     <div className={props.param}>
-      <label htmlFor={props.name} className="form-label">
-        {props.title}
-      </label>
+        <label htmlFor={props.name} className="form-label">
+          {props.title}
+        </label>
      
         <input
           className="form-control"

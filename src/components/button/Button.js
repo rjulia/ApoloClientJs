@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 
 class Button extends Component {
   render() {
-    const { name, type, classButton, ariadisable = true } = this.props;
+    const { name, type, classButton, ariadisable = true, disabled = false } = this.props;
     return (
-     <button  
+     <button 
+      disabled={disabled}
       type={type}
       onClick={this.props.action}
       aria-disabled={ariadisable}
