@@ -40,44 +40,43 @@ class NewProduct extends Component {
       const noValid = !name || !price || !stock;
       return noValid;
   }
+  createNewProduct = (e, setProduct) => {
+      e.preventDefault()
+      console.log(setProduct)
+            // insert BBDD
+      setProduct().then( data => {
+        console.log(data)
+      })
+      this.setState({
+        show: true,
+      })
+
+  }
 
   render() {
-
-    const {error} = this.state
-    let respuesta = (error) ? <p className="alert alert-danger p3 text-center"> all fields are required</p> : ''
-
+    const {name, price, stock} = this.state;
+    const input = {
+      name,
+      price : Number(price),
+      stock: Number(stock),
+    };
     return (
       <Fragment>
         <Title title="New Product" />
-         {respuesta}
         <div className="row justify-content-center">
           <Mutation
             mutation={NEW_PRODUCT}
-            onCompleted={() =>
-              this.setState({
-                show: true
-              })
-            }
-            onError={() => this.setState({ hasError: true })}
+            variables={{input}}
+            // onCompleted={() =>
+            //   this.setState({
+            //     show: true
+            //   })
+            // }
+            // onError={() => this.setState({ hasError: true })}
           >
-            {setProduct => (
-              <form className="col-md-8"
-                onSubmit={event =>{
-                event.preventDefault();
-                 const {name, price, stock} = this.state;
-                this.setState({
-                    error: false
-                })
-                const input = {
-                  name,
-                  price : Number(price),
-                  stock: Number(stock),
-                };
-                console.log(input)
-                setProduct({
-                    variables: {input}
-                })
-              }}>
+            {(setProduct, {loading, error, data}) => {
+              return (<form className="col-md-8"
+                onSubmit={e => this.createNewProduct(e, setProduct)}>
                 <Input
                   inputtype={"text"}
                   title={"Product Name"}
@@ -112,7 +111,7 @@ class NewProduct extends Component {
                   classButton={"btn btn-success float-right"}
                 />
               </form>
-            )}
+              )}}
           </Mutation>
         </div>
 
