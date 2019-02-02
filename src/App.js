@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { ApolloProvider } from "react-apollo";
 import ApolloCliente, { InMemoryCache } from "apollo-boost";
 import Header from "./scenes/header/Header";
-import {Clients, NewClient, EditClient, NewProduct } from "./scenes/index.scenes";
+import {Clients, NewClient, EditClient, NewProduct, Products, EditProduct } from "./scenes/index.scenes";
 
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
@@ -29,7 +29,10 @@ class App extends Component {
                 <Route exact path="/" component={Clients}/>
                 <Route exact path="/client/new" component={NewClient}/>
                 <Route exact path="/client/edit/:id" component={EditClient}/>
+                <Route exact path="/products" component={Products}/>
                 <Route exact path="/product/new" component={NewProduct}/>
+                <Route exact path="/product/edit/:id" component={EditProduct}/>
+
               </Switch>
             </div>
           </Fragment>

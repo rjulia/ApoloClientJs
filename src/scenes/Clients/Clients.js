@@ -6,11 +6,11 @@ import { Link } from "react-router-dom";
 import { CLIENTS_QUERY } from "../../services/queries/index.query";
 import { DELETE_CLIENT } from "../../services/mutations/index.mutations";
 
-import {Title, Pagination } from "../../components/Index.components";
+import {Title, Pagination, Spinner } from "../../components/Index.components";
 
 import swal from "sweetalert2";
 
-const Loading = <h1>Cargando</h1>;
+
 
 class Clients extends React.Component {
 
@@ -19,7 +19,7 @@ class Clients extends React.Component {
     show: false,
     pager: {
       current: 1,
-      offset: 1 
+      offset: 0 
     }
   };
   prevPage = () => {
@@ -43,12 +43,12 @@ class Clients extends React.Component {
     return (
       <Query query={CLIENTS_QUERY} pollInterval={2000} variables={{limit: this.limit, offset: this.state.pager.offset}}>
         {({ loading, error, data, starPolling, stopPolling }) => {
-          if (loading) return Loading;
+          if (loading) return <Spinner color={"#18BC9C"} />;
           if (error) return `Error: ${error.message}`;
           const list = data.getClients;
           return (
             <Fragment>
-              <Title title="Listado De clientes" />
+              <Title title="Client List" />
               <ul className="list-group mt-4">
                 {list.map(client => {
                   const { id } = client;
@@ -96,7 +96,7 @@ class Clients extends React.Component {
                             to={`/client/edit/${client.id}`}
                             params={client.id}
                           >
-                            Editar Cliente
+                            Edit Client
                           </Link>
                         </div>
                       </div>

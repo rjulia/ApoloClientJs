@@ -7,19 +7,28 @@ import { withSwalInstance } from "sweetalert2-react";
 import swal from "sweetalert2";
 const SweetAlert = withSwalInstance(swal);
 const SweetError = withSwalInstance(swal);
+const initialState = {
+    name: "",
+    price: 0,
+    stock: 0, 
+    noValid: true
+}
+
 
 class NewProduct extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      price: 0,
-      stock: 0, 
-      noValid: true
+      ...initialState
     };
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
+  cleanState = () => {
+    this.setState({
+      ...initialState
+    })
+  }
   handleInputChange(event) {
     const target = event.target;
     const value = target.value;
@@ -44,12 +53,10 @@ class NewProduct extends Component {
 
             // insert BBDD
       setProduct().then( data => {
-
+        this.setState({
+          show: true,
+        })
       })
-      this.setState({
-        show: true,
-      })
-
   }
 
   render() {
@@ -120,7 +127,9 @@ class NewProduct extends Component {
           text="The product was saved succesfull"
           onConfirm={() => {
             this.setState({ show: false });
-            this.props.history.push("/");
+            this.cleanState();
+
+            this.props.history.push("/products");
           }}
         />
         <SweetError

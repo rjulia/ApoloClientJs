@@ -1,11 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import {Title } from "../../components/Index.components";
 
 class EditProduct extends Component {
   render() {
     return (
-      <div>
-        sajkdlksj
-      </div>
+      <Fragment>
+        <Title title="Edit Client" />
+      </Fragment>
+
     );
   }
 }
