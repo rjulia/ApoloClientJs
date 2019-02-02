@@ -32,7 +32,6 @@ class NewProduct extends Component {
         ...prevState,
         [name]: value
       }),
-      () => console.log(this.state)
     );
   }
   validFrom = () => {
@@ -42,10 +41,10 @@ class NewProduct extends Component {
   }
   createNewProduct = (e, setProduct) => {
       e.preventDefault()
-      console.log(setProduct)
+
             // insert BBDD
       setProduct().then( data => {
-        console.log(data)
+
       })
       this.setState({
         show: true,

@@ -38,7 +38,6 @@ export default class NewClient extends Component {
         ...prevState,
         [name]: value      
       }),
-      () => console.log(this.state)
     );
   }
   newFiled = () => {
@@ -105,7 +104,6 @@ export default class NewClient extends Component {
                   tipo,
                   edad: Number(edad)
                 };
-                console.log(input)
                 setClient({
                     variables: {input}
                 })

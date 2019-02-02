@@ -23,7 +23,6 @@ class Clients extends React.Component {
     }
   };
   prevPage = () => {
-    console.log('prev')
     this.setState({
         pager: {
           offset: this.state.pager.offset - this.limit,
@@ -33,7 +32,6 @@ class Clients extends React.Component {
   }
 
   nextPage = () => {
-    console.log('next')
     this.setState({
         pager: {
           offset: this.state.pager.offset + this.limit,

@@ -16,7 +16,6 @@ export default class EditClient extends Component {
             {({ loading, error, data, refetch }) => {
               if (loading) return <Spinner color={"#18BC9C"} />;
               if (error) return `Error: ${error.message}`;
-              console.log(data.getClient)
               return <FormEditClient refetch={refetch} client={data.getClient}/>;
             }}
           </Query>

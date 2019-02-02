@@ -63,7 +63,6 @@ class FormEditClient extends Component {
                 tipo,
                 emails
             }
-            console.log(input)
 
             updateClient({
               variables: {input}
