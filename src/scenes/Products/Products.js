@@ -14,6 +14,7 @@ class Products extends Component {
   limit = 10000;
   state = {
     show: false,
+    message: '',
     pager: {
       current: 1,
       offset: 0 
@@ -36,6 +37,45 @@ class Products extends Component {
         }
     })
   }
+  deleteProduct = (id) => {
+    return(
+    <Mutation 
+        mutation={DELETE_PRODUCT}
+        onCompleted ={(data) => {
+          this.setState({
+            message: data.deleteProduct
+        })}}>
+        {deleteProduct => (
+          <button
+            type="button"
+            onClick={() => {
+
+              swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.value) {
+                  deleteProduct({ variables: { id }});
+                  swal.fire(
+                    'Deleted!',
+                    this.state.message,
+                    'success'
+                  )
+                }
+              })                           
+            }}
+            className="btn btn-danger mr-2"
+          >
+            Delete
+          </button>
+        )}
+      </Mutation>
+    )}
 
   render() {
     return (
@@ -53,7 +93,6 @@ class Products extends Component {
             ...objKey,
             'Delete', 
             'Edit']
-          console.log(list, objKey)
           return (
             <Fragment>
               <Title title="Products List" />
@@ -76,38 +115,8 @@ class Products extends Component {
                     <td>${product.price}</td>
                     <td>{product.stock}</td>
                     <td>
-                      <Mutation mutation={DELETE_PRODUCT}>
-                        {deleteProduct => (
-                          <button
-                            type="button"
-                            onClick={() => {
-
-                              swal.fire({
-                                title: 'Are you sure?',
-                                text: "You won't be able to revert this!",
-                                type: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, delete it!'
-                              }).then((result) => {
-                                if (result.value) {
-                                  deleteProduct({ variables: { id }});
-                                  swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                  )
-                                }
-                              })
-                              
-                            }}
-                            className="btn btn-danger mr-2"
-                          >
-                            Delete
-                          </button>
-                        )}
-                      </Mutation></td>
+                      {this.deleteProduct(id)}
+                    </td>
                     <td>
                       <Link
                         className="btn btn-success d-block d-md-inline-block"

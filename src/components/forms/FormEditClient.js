@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { UPDATE_CLIENT  } from "../../services/mutations/index.mutations";
 import { Mutation  } from "react-apollo";
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 import { withSwalInstance } from 'sweetalert2-react';
 import swal from 'sweetalert2';
@@ -209,5 +209,5 @@ class FormEditClient extends Component {
     );
   }
 }
-// withRouter is hight component, and now we have push in touter
+// withRouter is hight component, and now we have push in router
 export default withRouter(FormEditClient);
