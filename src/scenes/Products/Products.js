@@ -11,7 +11,7 @@ import swal from "sweetalert2";
 
 class Products extends Component {
 
-  limit = 10000;
+  limit = 5;
   state = {
     show: false,
     message: '',
@@ -131,6 +131,13 @@ class Products extends Component {
                 })}
                 </tbody>
               </table>
+              <Pagination
+                  current={this.state.pager.current}
+                  totalItems={data.totalProducts}
+                  limit={this.limit}
+                  prevPage={this.prevPage}
+                  nextPage={this.nextPage}
+               />
             </Fragment>
           );
         }}

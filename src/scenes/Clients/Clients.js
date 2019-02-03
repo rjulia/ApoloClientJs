@@ -106,7 +106,7 @@ class Clients extends React.Component {
               </ul>
                <Pagination
                   current={this.state.pager.current}
-                  totalClients={data.totalClients}
+                  totalItems={data.totalClients}
                   limit={this.limit}
                   prevPage={this.prevPage}
                   nextPage={this.nextPage}

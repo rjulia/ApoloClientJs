@@ -73,12 +73,6 @@ class NewProduct extends Component {
           <Mutation
             mutation={NEW_PRODUCT}
             variables={{input}}
-            // onCompleted={() =>
-            //   this.setState({
-            //     show: true
-            //   })
-            // }
-            // onError={() => this.setState({ hasError: true })}
           >
             {(setProduct, {loading, error, data}) => {
               return (<form className="col-md-8"

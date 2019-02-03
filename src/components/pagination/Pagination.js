@@ -4,7 +4,7 @@ import { Button} from "../Index.components";
 class Pagination extends Component {
   state = {
     paginator: {
-      pages: Math.ceil(Number(this.props.totalClients) / this.props.limit)
+      pages: Math.ceil(Number(this.props.totalItems) / this.props.limit)
     }
   };
   render() {
