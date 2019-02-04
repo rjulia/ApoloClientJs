@@ -59,6 +59,13 @@ class Clients extends React.Component {
                           {client.nombre} {client.apellido} - {client.empresa}
                         </div>
                         <div className="col-md-4 d-flex justify-content-end ">
+                         <Link
+                            className="btn btn-warning d-block d-md-inline-block mr-2"
+                            to={`/order/new/${id}`}
+                            params={id}
+                          >
+                            New Order
+                          </Link>
                           <Mutation mutation={DELETE_CLIENT}>
                             {deleteCLient => (
                               <button

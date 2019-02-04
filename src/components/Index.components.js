@@ -5,4 +5,7 @@ export { default as Spinner } from './spiner/Spiner';
 export { default as FormEditClient } from './forms/FormEditClient';
 export { default as FormEditProduct } from './forms/FormEditProduct';
 export { default as Pagination } from './pagination/Pagination';
-export { default as Button } from './button/Button'
+export { default as Button } from './button/Button';
+export { default as ClientWidget } from './clientwidget/ClientWidget';
+
+
