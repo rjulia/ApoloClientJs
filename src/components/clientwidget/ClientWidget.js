@@ -13,7 +13,6 @@ const ClientWidget = ({ id }) => {
         {({ loading, error, data, refetch }) => {
           if (loading) return <Spinner color={"#18BC9C"} />;
           if (error) return `Error: ${error.message}`;
-          console.log(data);
           const { apellido, nombre, tipo, empresa, emails } = data.getClient;
           return (
             <div className="card">

@@ -9,10 +9,12 @@ const Table = (props) => {
   if(products.length === 0) {
     return <div className="mt-5"> Select at least one product</div>;
   } else {
-    const objKey = Object.keys(products[0]);
     headTables = [
-      ...objKey,
-      'Quantity', 
+       'id',
+       'name',
+       'price',
+       'stock',
+      'quantity', 
       'Delete']
 
   };
@@ -31,7 +33,13 @@ const Table = (props) => {
       <tbody>
         {products.map((product, index) => {
           return (
-            <Product key={product.id} index={index} product={product}/>
+            <Product 
+              key={product.id} 
+              index={index} 
+              product={product}
+              updateQuantity={props.updateQuantity}
+              deleteProduct={props.deleteProduct}
+              />
           );
         })}
       </tbody>

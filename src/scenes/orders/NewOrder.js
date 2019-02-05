@@ -21,7 +21,6 @@ class NewOrder extends Component {
                 {({ loading, error, data, refetch }) => {
                   if (loading) return <Spinner color={"#18BC9C"} />;
                   if (error) return `Error: ${error.message}`;
-                  console.log(data)
                   return <OrderContent products={data.getProducts} id={id}/>
                 }}
 
