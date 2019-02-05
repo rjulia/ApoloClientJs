@@ -4,8 +4,8 @@ export const NEW_CLIENT = gql`
   mutation setClient($input: ClientInput) {
     setClient(input: $input) {
       id
-      nombre
-      apellido
+      name
+      surname
     }
   }
 `;
@@ -13,15 +13,15 @@ export const NEW_CLIENT = gql`
 export const UPDATE_CLIENT = gql`
   mutation updateClient($input: ClientInput) {
     uploadClient(input: $input) {
-      nombre
-      apellido
-      tipo
-      edad
+      id
+      name
+      surname
+      type
+      years
+      company
       emails {
         email
       }
-      empresa
-      id
     }
   }
 `;

@@ -9,14 +9,14 @@ class Pagination extends Component {
   };
   render() {
     const { current } = this.props;
-    const btnPrevious = (current > 1) ?  <li className="page-item">
+    const btnPrevious = (current > 1 ) ?  <li className="page-item">
     <Button 
       type={"button"}
       name={"PREVIOUS"}
       action={this.props.prevPage}
       classButton={"btn btn-success mr-1"}/></li> 
     : '';
-    const btnNext = (current !== this.state.paginator.pages) ?  <li className="page-item">
+    const btnNext = (current !== this.state.paginator.pages && Number(this.props.totalItems) > 0) ?  <li className="page-item">
     <Button 
       type={"button"} 
       classButton={"btn btn-success mr-1"}

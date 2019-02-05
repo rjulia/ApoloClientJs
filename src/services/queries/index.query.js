@@ -5,9 +5,9 @@ export const CLIENTS_QUERY = gql`
   query getClients($limit: Int, $offset: Int){
     getClients(limit: $limit, offset: $offset){
       id
-      nombre
-      apellido
-      empresa
+      name
+      surname
+      company
     }
     totalClients
   }
@@ -17,15 +17,14 @@ export const CLIENT_QUERY = gql`
   query getClient($id: ID) {
     getClient (id: $id) {
       id
-      nombre
-      apellido
-      tipo
-      edad
+      name
+      surname
+      type
+      years
       emails{
         email
       }
-      empresa
-      id
+      company
     }
 }`
 

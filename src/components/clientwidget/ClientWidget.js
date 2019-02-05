@@ -13,16 +13,16 @@ const ClientWidget = ({ id }) => {
         {({ loading, error, data, refetch }) => {
           if (loading) return <Spinner color={"#18BC9C"} />;
           if (error) return `Error: ${error.message}`;
-          const { apellido, nombre, tipo, empresa, emails } = data.getClient;
+          const { surname, name, type, company, emails } = data.getClient;
           return (
             <div className="card">
               <img src={working} className="card-img-top" alt="..." />
               <div className="card-body">
                 <h5 className="card-title">
-                  Sr/Sra.: {`${nombre} ${apellido}`}
+                  Sr/Sra.: {`${name} ${surname}`}
                 </h5>
-                <p className="card-text">Empresa: {empresa}</p>
-                <span className="badge badge-pill badge-info">{tipo}</span>
+                <p className="card-text">company: {company}</p>
+                <span className="badge badge-pill badge-info">{type}</span>
                 <p className="card-text mt-2">Emails:</p>
                 <ul className="list-group list-group-flush">
                   {emails.map((email, idx) => (

@@ -12,11 +12,11 @@ export default class NewClient extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        nombre: '',
-        apellido: '',
-        empresa: '',
-        edad: '',
-        tipo: '',
+        name: '',
+        surname: '',
+        company: '',
+        years: '',
+        type: '',
         error: false,
         show: false,
         hasError: false,
@@ -85,9 +85,9 @@ export default class NewClient extends Component {
               className="col-md-8 m-3"
               onSubmit={event =>{
                 event.preventDefault();
-                const {nombre, apellido, empresa, edad, tipo} = this.state;
+                const {name, surname, company, years, type} = this.state;
                 const {emails} = this.state
-                if(nombre === '' || apellido === '' || tipo === '' || empresa === '' || edad === ''){
+                if(name === '' || surname === '' || type === '' || company === '' || years === ''){
                   this.setState({
                     error: true
                   })
@@ -97,12 +97,12 @@ export default class NewClient extends Component {
                     error: false
                 })
                 const input = {
-                  nombre,
-                  apellido,
-                  empresa,
+                  name,
+                  surname,
+                  company,
                   emails,
-                  tipo,
-                  edad: Number(edad)
+                  type,
+                  years: Number(years)
                 };
                 setClient({
                     variables: {input}
@@ -112,18 +112,18 @@ export default class NewClient extends Component {
                 <Input
                     inputtype={"text"}
                     title={"First Name"}
-                    name={"nombre"}
+                    name={"name"}
                     param={"form-group col-md-6"}
-                    value={this.state.nombre}
+                    value={this.state.name}
                     placeholder={"Name"}
                     onChange={this.handleInputChange}
                 />{" "}
                 <Input
                     inputtype={"text"}
                     title={"Surname"}
-                    name={"apellido"}
+                    name={"surname"}
                     param={"form-group col-md-6"}
-                    value={this.state.apellido}
+                    value={this.state.surname}
                     placeholder={"Surname"}
                     onChange={this.handleInputChange}
                 />{" "}
@@ -132,9 +132,9 @@ export default class NewClient extends Component {
                 <Input
                     inputtype={"text"}
                     title={"Company"}
-                    name={"empresa"}
+                    name={"company"}
                     param={"form-group col-md-12"}
-                    value={this.state.empresa}
+                    value={this.state.company}
                     placeholder={"Company"}
                     onChange={this.handleInputChange}
                 />{" "}
@@ -168,9 +168,9 @@ export default class NewClient extends Component {
                 <Input
                     inputtype={"text"}
                     title={"Years"}
-                    name={"edad"}
+                    name={"years"}
                     param={"form-group col-md-6"}
-                    value={this.state.edad}
+                    value={this.state.years}
                     placeholder={"Years"}
                     onChange={this.handleInputChange}
                 />{" "}
@@ -178,9 +178,9 @@ export default class NewClient extends Component {
                 <div className="form-group col-md-6">
                   <label>type of Client</label>
                   <select 
-                    name="tipo" 
+                    name="type" 
                     className="form-control"
-                    value={this.state.tipo}
+                    value={this.state.type}
                     onChange={this.handleInputChange}>
                     <option value="">Elegir...</option>
                     <option value="PREMIUM">PREMIUM</option>

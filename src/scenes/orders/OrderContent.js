@@ -46,7 +46,6 @@ class OrderContentList extends Component {
 
   }
   deleteProduct = (id) => {
-    console.log(id)
     const products = this.state.products;
 
     const productsRest = products.filter(pro => pro.id !== id)

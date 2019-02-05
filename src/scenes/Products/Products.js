@@ -88,10 +88,12 @@ class Products extends Component {
           if (loading) return <Spinner color={"#18BC9C"} />;
           if (error) return `Error: ${error.message}`;
           const list = data.getProducts;
-          const objKey = Object.keys(list[0]);
           const headTables = [
-            ...objKey,
-            'Delete', 
+            'id',
+            'name',
+            'price',
+            'stock',
+            'Delete',
             'Edit']
           return (
             <Fragment>

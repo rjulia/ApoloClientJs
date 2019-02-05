@@ -10,7 +10,7 @@ const SweetError = withSwalInstance(swal);
 
 class FormEditClient extends Component {
   state = {
-    cliente: this.props.client,
+    client: this.props.client,
     emails: this.props.client.emails,
     error: false,
     show: false,
@@ -40,7 +40,7 @@ class FormEditClient extends Component {
   render() {
     
     const { emails } = this.state;
-    const { nombre, apellido, empresa, edad, tipo} = this.state.cliente;
+    const { name, surname, company, years, type} = this.state.client;
     return (
       <Fragment>
       <Mutation 
@@ -52,15 +52,15 @@ class FormEditClient extends Component {
         {updateClient => (
           <form className="col-md-8 m-3" onSubmit={e => {
             e.preventDefault();
-            const {id, nombre, apellido, empresa, edad, tipo} = this.state.cliente;
+            const {id, name, surname, company, years, type} = this.state.client;
             const {emails} = this.state;
             const input = {
                 id, 
-                nombre, 
-                apellido, 
-                empresa, 
-                edad: Number(edad), 
-                tipo,
+                name, 
+                surname, 
+                company, 
+                years: Number(years), 
+                type,
                 emails
             }
 
@@ -71,29 +71,29 @@ class FormEditClient extends Component {
           }}>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Nombre</label>
+                <label>name</label>
                 <input 
                   type="text" 
-                  defaultValue={nombre} 
+                  defaultValue={name} 
                   className="form-control" 
                   onChange={e => this.setState({ 
-                    cliente: {
-                        ...this.state.cliente,
-                        nombre: e.target.value
+                    client: {
+                        ...this.state.client,
+                        name: e.target.value
                     
                     }})}
                   />
               </div>
               <div className="form-group col-md-6">
-                <label>Apellido</label>
+                <label>surname</label>
                 <input 
                   type="text" 
-                  defaultValue={apellido} 
+                  defaultValue={surname} 
                   className="form-control" 
                   onChange={e => this.setState({ 
-                    cliente: {
-                        ...this.state.cliente,
-                        apellido: e.target.value
+                    client: {
+                        ...this.state.client,
+                        surname: e.target.value
                     
                     }})} />
               </div>
@@ -101,15 +101,15 @@ class FormEditClient extends Component {
 
             <div className="form-row">
               <div className="form-group col-md-12">
-                <label>Empresa</label>
+                <label>company</label>
                 <input 
                   type="text" 
-                  defaultValue={empresa} 
+                  defaultValue={company} 
                   className="form-control" 
                   onChange={e => this.setState({ 
-                    cliente: {
-                        ...this.state.cliente,
-                        empresa: e.target.value
+                    client: {
+                        ...this.state.client,
+                        company: e.target.value
                     
                     }})} />
               </div>
@@ -131,7 +131,7 @@ class FormEditClient extends Component {
                         type="button"
                         onClick={this.quitarCampo(index)}
                       >
-                        &times; Eliminar
+                        &times; Delete
                       </button>
                     </div>
                   </div>
@@ -143,36 +143,36 @@ class FormEditClient extends Component {
                   type="button"
                   className="btn btn-warning"
                 >
-                  + Agregar Email
+                  + Add Email
                 </button>
               </div>
             </div>
             <div className="form-row">
               <div className="form-group col-md-6">
-                <label>Edad</label>
+                <label>years</label>
                 <input 
                   type="text" 
-                  defaultValue={edad} 
+                  defaultValue={years} 
                   className="form-control" 
                   onChange={e => this.setState({ 
                     cliente: {
                         ...this.state.cliente,
-                        edad: e.target.value
+                        years: e.target.value
                     
                     }})} />
               </div>
               <div className="form-group col-md-6">
-                <label>Tipo Cliente</label>
+                <label>type Cliente</label>
                 <select 
-                  value={tipo} 
+                  value={type} 
                   className="form-control" 
                   onChange={e => this.setState({ 
                     cliente: {
                         ...this.state.cliente,
-                        tipo: e.target.value
+                        type: e.target.value
                     
                     }})}>
-                  <option value="">Elegir...</option>
+                  <option value="">Choose...</option>
                   <option value="PREMIUM">PREMIUM</option>
                   <option value="BASICO">BÁSICO</option>
                 </select>

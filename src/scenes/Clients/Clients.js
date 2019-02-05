@@ -56,7 +56,7 @@ class Clients extends React.Component {
                     <li className="list-group-item" key={client.id}>
                       <div className="row justify-content-between align-items-center">
                         <div className="col-md-8 d-flex justify-content-between">
-                          {client.nombre} {client.apellido} - {client.empresa}
+                          {client.name} {client.surname} - {client.company}
                         </div>
                         <div className="col-md-4 d-flex justify-content-end ">
                          <Link
