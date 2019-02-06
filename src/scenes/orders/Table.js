@@ -1,5 +1,5 @@
 import React from "react";
-import {Product} from '../index.scenes'
+import {RowProduct} from '../index.scenes'
 
 const Table = (props) => {
     
@@ -33,7 +33,7 @@ const Table = (props) => {
       <tbody>
         {products.map((product, index) => {
           return (
-            <Product 
+            <RowProduct 
               key={product.id} 
               index={index} 
               product={product}

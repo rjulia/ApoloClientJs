@@ -4,9 +4,11 @@ export { default as EditClient } from './Clients/EditClient';
 export { default as NewProduct } from './Products/NewProduct';
 export { default as Products } from './Products/Products';
 export { default as EditProduct } from './Products/EditProduct';
-export { default as NewOrder } from './orders/NewOrder'; 
-export { default as OrderContent} from "./orders/OrderContent";
-export { default as Product} from "./orders/Product";
-export { default as Table } from './orders/Table';
+export { default as NewOrder } from './Orders/NewOrder'; 
+export { default as OrderContent} from "./Orders/OrderContent";
+export { default as RowProduct} from "./Orders/RowProduct";
+export { default as Table } from './Orders/Table';
+export { default as GeneratorOrder } from './Orders/GeneratorOrder';
+
 
 

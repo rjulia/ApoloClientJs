@@ -60,3 +60,14 @@ export const UPDATE_PRODUCT = gql`
     }
   }
 `;
+
+
+//Oders 
+
+export const NEW_ORDER = gql`
+  mutation setOrders($input: OrderInput){
+    setOrders(input: $input){
+      id
+    }
+  }
+`;

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 import Animated from 'react-select/lib/animated';
 import { Title } from "../../components/Index.components";
-import { Table } from "../index.scenes";
+import { Table, GeneratorOrder } from "../index.scenes";
 
 class OrderContentList extends Component {
 
@@ -79,13 +79,20 @@ class OrderContentList extends Component {
           updateQuantity={this.updateQuantity}
           deleteProduct={this.deleteProduct}
         /> 
-        <p className="font-bold float-right mt-3">
+        <div className="border-top mt-3 pt-3">
+        <p className="font-bold float-right">
             Total: 
             <span className="font-weight-normal">
                 $ {this.state.total}
             </span>
         </p>
-        
+        <GeneratorOrder 
+          products={this.state.products}
+          total={this.state.total}
+          idClient={this.props.id}
+        />
+
+        </div>
 
       </Fragment>
     );
