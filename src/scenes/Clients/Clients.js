@@ -55,16 +55,23 @@ class Clients extends React.Component {
                   return (
                     <li className="list-group-item" key={client.id}>
                       <div className="row justify-content-between align-items-center">
-                        <div className="col-md-8 d-flex justify-content-between">
+                        <div className="col-md-6 d-flex justify-content-between">
                           {client.name} {client.surname} - {client.company}
                         </div>
-                        <div className="col-md-4 d-flex justify-content-end ">
+                        <div className="col-md-6 d-flex justify-content-end ">
                          <Link
                             className="btn btn-warning d-block d-md-inline-block mr-2"
                             to={`/order/new/${id}`}
                             params={id}
                           >
                             New Order
+                          </Link>
+                          <Link
+                            className="btn btn-primary d-block d-md-inline-block mr-2"
+                            to={`/orders/${id}`}
+                            params={id}
+                          >
+                            View Orders
                           </Link>
                           <Mutation mutation={DELETE_CLIENT}>
                             {deleteCLient => (

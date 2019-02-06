@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Query } from "react-apollo";
-import { Title, ClientWidget, Spinner } from "../../components/Index.components";
-import { OrderContent } from "../index.scenes";
+import { Title, ClientWidget, Spinner } from "../../../components/Index.components";
+import { OrderContent } from "../../index.scenes";
 
 
-import { PRODUCTS_QUERY} from "../../services/queries/index.query";
+import { PRODUCTS_QUERY} from "../../../services/queries/index.query";
 
 class NewOrder extends Component {
   render() {
@@ -17,7 +17,8 @@ class NewOrder extends Component {
               <ClientWidget id={id}/>
             </div>
             <div className="col-md-9">
-              <Query query={PRODUCTS_QUERY}>
+              <Query query={PRODUCTS_QUERY}
+                variables={{hasStock: true}}>
                 {({ loading, error, data, refetch }) => {
                   if (loading) return <Spinner color={"#18BC9C"} />;
                   if (error) return `Error: ${error.message}`;

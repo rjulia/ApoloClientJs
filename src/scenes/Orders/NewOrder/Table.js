@@ -1,5 +1,5 @@
 import React from "react";
-import {RowProduct} from '../index.scenes'
+import {RowProduct} from '../../index.scenes'
 
 const Table = (props) => {
     

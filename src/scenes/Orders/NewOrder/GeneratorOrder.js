@@ -1,10 +1,10 @@
 import React from 'react';
 import { Mutation  } from "react-apollo";
-import { NEW_ORDER } from "../../services/mutations/index.mutations";
+import { NEW_ORDER } from "../../../services/mutations/index.mutations";
 
 import { withRouter } from "react-router-dom";
 const validatorOrder = (props) => {
-    let noValid = !props.products || props.total === 0;
+    let noValid = !props.products || props.total <= 0;
     return noValid;
 
 }

@@ -7,7 +7,8 @@ class RowProduct extends Component {
 
   state = {
     quantity: 0,
-    show: false
+    show: false,
+    message: ''
   }
   render() {
     const idx = this.props.index
@@ -28,11 +29,24 @@ class RowProduct extends Component {
             onChange={e => {
               if(e.target.value > stock) {
                   e.target.value = 0;
-                  this.setState({ show: true})
+                  this.setState(
+                    { 
+                      show: true,
+                      message: `You only can select ${stock} products`
+                    }
+                  )
+              }
+              if(e.target.value < 0) {
+                  e.target.value = 0;
+                  this.setState(
+                    { 
+                      show: true,
+                      message: `You only can select possitve numbers`
+                    }
+                  )
               }
               this.props.updateQuantity(e.target.value, this.props.index)}
-            }
-            
+            }      
           />
         </td>
         <td>
@@ -45,10 +59,15 @@ class RowProduct extends Component {
        <SweetAlert
           show={this.state.show}
           title="SORRY!"
-          text={`You only can select ${this.props.product.stock} products`} 
+          text={this.state.message} 
           onConfirm={
             () => {
-              this.setState({ show: false })
+              this.setState(
+                { 
+                  show: false ,
+                  message: ''
+                }
+              )
             }
           }
         />

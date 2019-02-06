@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import Select from 'react-select';
 import Animated from 'react-select/lib/animated';
-import { Title } from "../../components/Index.components";
-import { Table, GeneratorOrder } from "../index.scenes";
+import { Title } from "../../../components/Index.components";
+import { Table, GeneratorOrder } from "../../index.scenes";
 
 class OrderContentList extends Component {
 
