@@ -1,9 +1,10 @@
 import React from "react";
+import "../../css/title.css";
 
-const Title = ({ title, heading = 2 }) => {
+const Title = ({ title, heading = 2, addClass="" }) => {
   
   
-    if( heading === 4 ) return <h4 className="text-left">{title}</h4> 
+    if( heading === 4 ) return <h4 className={`text-left ${addClass}`} >{title}</h4> 
     return <h2 className="text-center">{title}</h2>;
  
   

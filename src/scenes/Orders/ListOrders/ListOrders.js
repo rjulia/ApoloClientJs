@@ -1,10 +1,38 @@
-import React from 'react';
+import React , {Fragment}from 'react';
+import { Query } from "react-apollo";
+import { ORDERS_QUERY} from "../../../services/queries/index.query";
+import { CardOrder } from "../../index.scenes";
 
-const ListOrders = () => {
+import { Title, Spinner } from "../../../components/Index.components";
+
+const ListOrders = (props) => {
+  console.log(props)
+  const clientId = props.match.params.id
+  console.log(clientId)
+
   return (
-    <div>
-      hellle
-    </div>
+    <Fragment>
+      <Title title="Order by Client" />
+      <div className="row">
+        <Query query={ORDERS_QUERY}
+          variables={{client: clientId}}
+          pollInterval={500}>
+          {({ loading, error, data, refetch, startPolling, stopPolling }) => {
+            if (loading) return <Spinner color={"#18BC9C"} />;
+            if (error) return `Error: ${error.message}`;
+            return (
+                data.getOrders.map(order => (
+                  <CardOrder 
+                    key={order.id}
+                    clientId={clientId}
+                    order={order}/>
+                ))
+            )
+          }}
+
+        </Query>
+      </div>
+    </Fragment>
   );
 };
 

@@ -10,6 +10,10 @@ export { default as RowProduct} from "./Orders/NewOrder/RowProduct";
 export { default as Table } from './Orders/NewOrder/Table';
 export { default as GeneratorOrder } from './Orders/NewOrder/GeneratorOrder';
 export { default as ListOrders } from './Orders/ListOrders/ListOrders'; 
+export { default as CardOrder } from './Orders/ListOrders/CardOrder'; 
+export { default as DetailProductOrder } from './Orders/ListOrders/DetailProductOrder'; 
+
+
 
 
 

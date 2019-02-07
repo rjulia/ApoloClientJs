@@ -51,3 +51,18 @@ export const PRODUCT_QUERY  = gql`
     }
 }`
 
+export const ORDERS_QUERY = gql`
+  query getOrders($client: String){
+    getOrders(client: $client){
+      id
+      date
+      total
+      state
+      order{
+        id
+        quantity
+      }
+    }
+  }
+`;
+
