@@ -9,7 +9,7 @@ const ListOrders = (props) => {
   console.log(props)
   const name = props.location.hash.substr(1).replace('%20', ' ')
   const clientId = props.match.params.id
-
+console.log(clientId)
   return (
     <Fragment>
       <Title title={`Order by Client ${name}` }/>

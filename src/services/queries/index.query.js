@@ -66,3 +66,14 @@ export const ORDERS_QUERY = gql`
   }
 `;
 
+export const TOP_CLIENTS = gql`
+  query topClients{
+    topClients{
+      total
+      client{
+        namecomplete
+      }
+    }
+  }
+`;
+

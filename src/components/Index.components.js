@@ -7,5 +7,11 @@ export { default as FormEditProduct } from './forms/FormEditProduct';
 export { default as Pagination } from './pagination/Pagination';
 export { default as Button } from './button/Button';
 export { default as ClientWidget } from './clientwidget/ClientWidget';
+export { default as Panel } from './Panel/Panel';
+export { default as ClientPanel } from './Panel/ClientPanel';
+export { default as BarChartComponent } from './BarChart/BarChart';
+
+
+
 
 
