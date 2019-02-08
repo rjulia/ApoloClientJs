@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from "react";
 import { ApolloProvider } from "react-apollo";
 import ApolloCliente, { InMemoryCache } from "apollo-boost";
-import Header from "./scenes/header/Header";
-import {Clients, NewClient, EditClient, NewProduct, Products, EditProduct, NewOrder, ListOrders } from "./scenes/index.scenes";
+import {Header, Clients, NewClient, EditClient, NewProduct, Products, EditProduct, NewOrder, ListOrders } from "./scenes/index.scenes";
 
 import { Panel } from "./components/Index.components";
-
-
+import { Register } from "./Auth/index.auth";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const client = new ApolloCliente({
@@ -19,6 +17,7 @@ const client = new ApolloCliente({
     console.log("networkgraphql", networkError);
   }
 });
+
 class App extends Component {
   render() {
     return (
@@ -37,6 +36,7 @@ class App extends Component {
                 <Route exact path="/order/new/:id" component={NewOrder}/>
                 <Route exact path="/orders/:id" component={ListOrders}/> 
                 <Route exact path="/panel" component={Panel}/> 
+                <Route exact path="/register" component={Register}/> 
 
               </Switch>
             </div>

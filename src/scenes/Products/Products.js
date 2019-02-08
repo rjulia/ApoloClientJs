@@ -110,12 +110,15 @@ class Products extends Component {
                 <tbody>
                 {list.map((product, index) => {
                   const { id } = product;
+                  const { stock }= product;
+
+                  let classColorStock = (stock < 100) ? 'table-danger text-light' : 'font-weight-bold';
                   return (
                   <tr key={id}>
                     <th scope="row">{index + 1}</th>
                     <td>{product.name}</td>
                     <td>${product.price}</td>
-                    <td>{product.stock}</td>
+                    <td className={classColorStock}>{product.stock}</td>
                     <td>
                       {this.deleteProduct(id)}
                     </td>

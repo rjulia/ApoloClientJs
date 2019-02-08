@@ -1,3 +1,4 @@
+export { default as Header } from './header/Header';
 export { default as Clients } from './Clients/Clients';
 export { default as NewClient } from './Clients/NewClient';
 export { default as EditClient } from './Clients/EditClient';
