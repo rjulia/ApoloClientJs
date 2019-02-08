@@ -51,12 +51,13 @@ class Clients extends React.Component {
               <Title title="Client List" />
               <ul className="list-group mt-4">
                 {list.map(client => {
-                  const { id } = client;
+                  const { id , name, surname} = client;
+                  const namecomplete = `${name} ${surname}`
                   return (
                     <li className="list-group-item" key={client.id}>
                       <div className="row justify-content-between align-items-center">
                         <div className="col-md-6 d-flex justify-content-between">
-                          {client.name} {client.surname} - {client.company}
+                          {name} {surname} - {client.company}
                         </div>
                         <div className="col-md-6 d-flex justify-content-end ">
                          <Link
@@ -68,8 +69,9 @@ class Clients extends React.Component {
                           </Link>
                           <Link
                             className="btn btn-primary d-block d-md-inline-block mr-2"
-                            to={`/orders/${id}`}
+                            to={{pathname:`/orders/${id}`, hash: `${namecomplete}` }}
                             params={id}
+                            key={namecomplete}
                           >
                             View Orders
                           </Link>

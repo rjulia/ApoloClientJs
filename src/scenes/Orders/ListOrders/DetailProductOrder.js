@@ -1,7 +1,6 @@
 import React from 'react';
 
 const DetailProductOrder = (props) => {
-    console.log(props)
   const {name, price} = props.product
 
   return (
@@ -12,11 +11,11 @@ const DetailProductOrder = (props) => {
       </p>
       <p className="card-text font-weight-bold">
         Price: 
-        <span className="font-weight-normal"> {price}</span>
+        <span className="font-weight-normal"> HKD ${price}</span>
       </p>
       <p className="card-text font-weight-bold">
         Quantity: 
-        <span className="font-weight-normal"> HKD ${props.quantity} </span>
+        <span className="font-weight-normal"> {props.quantity} </span>
       </p>
     </div>
   );

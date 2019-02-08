@@ -71,3 +71,18 @@ export const NEW_ORDER = gql`
     }
   }
 `;
+
+export const UPDATE_ORDERS = gql`
+  mutation updateOrders($input: OrderInput){
+    updateOrders(input: $input){
+      id
+      date
+      total
+      state
+      order{
+        id
+        quantity
+      }
+    }
+  }
+`;
