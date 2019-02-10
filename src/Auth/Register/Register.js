@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Title, Input } from "../../components/Index.components";
-import { CREATE_USER} from "../../services/mutations/index.mutations";
+import { CREATE_USER } from "../../services/mutations/index.mutations";
 import { Mutation } from "react-apollo";
+import { withRouter } from 'react-router-dom';
 
 import { withSwalInstance } from "sweetalert2-react";
 import swal from "sweetalert2";
@@ -12,7 +13,8 @@ const initialState = {
   password: "",
   repeatPassword: "",
   show: false,
-  hasError: false
+  hasError: false,
+  message: ''
 };
 
 class Register extends Component {
@@ -32,7 +34,6 @@ class Register extends Component {
   validadFrom = () => {
     const { user, password, repeatPassword } = this.state;
     const noValid = !user || !this.validateEmail() || !password || password !== repeatPassword;
-    console.log(this.validateEmail());
 
     return noValid;
   };
@@ -46,32 +47,48 @@ class Register extends Component {
     return (false)
     
   } 
+  createNewUser = (e, createUser, error) => {
+    const { user, password } = this.state;
+    e.preventDefault();
+    createUser({
+      variables: {user, password}
+    }).then(
+      data => console.log('desde then', data)
+    );
+  }
 
+  cleanState = () => {
+    this.setState({
+      ...initialState
+    })
+  }
   render() {
+    
     return (
       <Fragment>
         <Title title="new user" />
         <div className="row justify-content-center">
           <Mutation
             mutation={CREATE_USER}
-            onCompleted={() =>
+            onCompleted={(e) =>{
+              console.log('on complete', e)
               this.setState({
                 show: true
               })
-            }
-            onError={() => this.setState({ hasError: true })}
+            }}
+            onError={(e) => {
+              this.setState({ 
+                hasError: true,
+                message: e.message       
+              })
+            }}
           >
-            {createUser => (
+            {(createUser, {loading, error, data}) => (
               <form
                 className="col-md-8"
-                onSubmit={event => {
-                  event.preventDefault();
-                  const { user, password } = this.state;
-                  createUser({
-                    variables: { user, password}
-                  });
-                }}
+                onSubmit={e => this.createNewUser(e, createUser, error)} 
               >
+
                 <Input
                   inputtype={"email"}
                   title={"User eamil"}
@@ -116,19 +133,22 @@ class Register extends Component {
           text="The User was saved succesfull"
           onConfirm={() => {
             this.setState({ show: false });
-            this.props.history.push("/");
+            this.props.history.push("/login");
           }}
         />
         <SweetError
           show={this.state.hasError}
           title="HEY!"
           type="warning"
-          text="Something happend in Data Base"
-          onConfirm={() => this.setState({ hasError: false })}
+          text={this.state.message}
+          onConfirm={() => this.setState({ 
+              hasError: false,
+              message: ''
+          })}
         />
       </Fragment>
     );
   }
 }
 
-export default Register;
+export default withRouter(Register);
