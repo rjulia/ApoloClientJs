@@ -83,7 +83,10 @@ export const ORDERS_QUERY = gql`
 export const CURRENT_USER = gql`
   query getUser{
     getUser{
+      id
       user
+      name
+      rol
     }
   }
 `;

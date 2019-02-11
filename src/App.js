@@ -10,7 +10,13 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 
 const App = ({refetch, session}) => {
   const {getUser} = session;
-  const message = (getUser) ? `Welcolme: ${getUser.user}`: <Redirect to="/login"/>;
+  let name;
+  if (getUser) {
+    console.log(getUser)
+    name = (getUser.name) ? getUser.name : getUser.user  
+  }
+  const message = (getUser) ? `Welcolme: ${name}`: <Redirect to="/login"/>;
+  
   return (
       
         <Router>

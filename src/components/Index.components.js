@@ -1,4 +1,6 @@
 export { default as Input } from './input/Input';
+export { default as Select } from './select/Select';
+
 export { default as Title } from './title/Title';
 export { default as Spinner } from './spiner/Spiner';
 

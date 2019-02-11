@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { Title, Input } from "../../components/Index.components";
+import { Title, Input, Select } from "../../components/Index.components";
 import { CREATE_USER } from "../../services/mutations/index.mutations";
 import { Mutation } from "react-apollo";
 import { withRouter } from 'react-router-dom';
@@ -15,7 +15,9 @@ const initialState = {
   repeatPassword: "",
   show: false,
   hasError: false,
-  message: ''
+  message: '',
+  name: '',
+  rol: ''
 };
 
 class Register extends Component {
@@ -33,8 +35,8 @@ class Register extends Component {
   };
 
   validadFrom = () => {
-    const { user, password, repeatPassword } = this.state;
-    const noValid = !user || !this.validateEmail() || !password || password !== repeatPassword;
+    const { user, password, repeatPassword, name, rol } = this.state;
+    const noValid = !user || !this.validateEmail() || !name || !rol || !password || password !== repeatPassword;
 
     return noValid;
   };
@@ -49,10 +51,10 @@ class Register extends Component {
     
   } 
   createNewUser = (e, createUser, error) => {
-    const { user, password } = this.state;
+    const { user, password, name, rol } = this.state;
     e.preventDefault();
     createUser({
-      variables: {user, password}
+      variables: {user, name, rol, password}
     }).then(
       data => console.log('desde then', data)
     );
@@ -63,8 +65,22 @@ class Register extends Component {
       ...initialState
     })
   }
+  
   render() {
-    
+    const options = [
+      {
+        value: '',
+        name: 'Choose'
+      },
+      {
+        value: 'ADMIN',
+        name: 'Admin'
+      },
+      {
+        value: 'SELLER',
+        name: 'Seller'
+      }
+    ]
     return (
       <Fragment>
         <Title title="new user" />
@@ -89,32 +105,56 @@ class Register extends Component {
                 className="col-md-8"
                 onSubmit={e => this.createNewUser(e, createUser, error)} 
               >
-
-                <Input
-                  inputtype={"email"}
-                  title={"User eamil"}
-                  name={"user"}
+                <div className="form-row">
+                  <Input
+                    inputtype={"text"}
+                    title={"User Name"}
+                    name={"name"}
+                    param={"form-group col-md-6"}
+                    value={this.state.name}
+                    placeholder={"Name Complate"}
+                    onChange={this.handleInputChange}
+                  />{" "}
+                  
+                  <Input
+                    inputtype={"email"}
+                    title={"User email"}
+                    name={"user"}
+                    param={"form-group col-md-6"}
+                    value={this.state.user}
+                    placeholder={"Email"}
+                    onChange={this.handleInputChange}
+                  />{" "}
+                  {/* <small className="form-text text-muted">
+                    (has to be a email)
+                  </small> */}
+                </div>
+                <div className="form-row">
+                  <Input
+                    inputtype={"text"}
+                    title={"Password"}
+                    name={"password"}
+                    param={"form-group col-md-6"}
+                    value={this.state.password}
+                    placeholder={"Password"}
+                    onChange={this.handleInputChange}
+                  />{" "}
+                  <Input
+                    inputtype={"text"}
+                    title={"Repeat password"}
+                    name={"repeatPassword"}
+                    param={"form-group col-md-6"}
+                    value={this.state.repeatPassword}
+                    placeholder={"Password"}
+                    onChange={this.handleInputChange}
+                  />{" "}
+                </div>
+                <Select
+                  title={"Select Rol"}
+                  name={"rol"}
                   param={"form-group"}
-                  value={this.state.user}
-                  placeholder={"Email"}
-                  onChange={this.handleInputChange}
-                />{" "}
-                <Input
-                  inputtype={"text"}
-                  title={"Password"}
-                  name={"password"}
-                  param={"form-group"}
-                  value={this.state.password}
-                  placeholder={"Password"}
-                  onChange={this.handleInputChange}
-                />{" "}
-                <Input
-                  inputtype={"text"}
-                  title={"Repeat password"}
-                  name={"repeatPassword"}
-                  param={"form-group"}
-                  value={this.state.repeatPassword}
-                  placeholder={"Password"}
+                  value={this.state.rol}
+                  options={options}
                   onChange={this.handleInputChange}
                 />{" "}
                 <button

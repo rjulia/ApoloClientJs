@@ -44,13 +44,8 @@ class Login extends Component {
         //ejecutar el query una vez que se haya iniciado sesion
         await this.props.refetch();
         // limpiar el state
-        this.cleanState()
+
         //rediriguir
-        setTimeout(() => {
-          this.setState({
-            show: true
-          })     
-        }, 3000)
       }); 
     }
 
@@ -73,7 +68,10 @@ class Login extends Component {
                         mutation={ AUTH_USER }
                         variables={{user, password}}
                         onCompleted={(e) =>{
-                          console.log('on complete', e)                      
+                          this.setState({
+                            show: true
+                          }) 
+
                         }}
                         onError={(e) => {
                           this.setState({ 
@@ -129,6 +127,7 @@ class Login extends Component {
                   text="Wellcome Again"
                   onConfirm={() => {
                     this.setState({ show: false });
+                    this.cleanState()
                     this.props.history.push("/panel");
                   }}
                 />
