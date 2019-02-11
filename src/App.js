@@ -9,6 +9,18 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const client = new ApolloCliente({
   uri: "http://localhost:4000/graphql",
+  // enviar token al servidor
+  fetchOptions: {
+    credentials: 'include'
+  },
+  request: operation => {
+    const token = localStorage.getItem('tokenGraphl');
+    operation.setContext({
+      headers: {
+        authorization: token
+      }
+    })
+  },
   cache: new InMemoryCache({
     addTypename: false
   }),

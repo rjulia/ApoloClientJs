@@ -8,6 +8,7 @@ import { withSwalInstance } from "sweetalert2-react";
 import swal from "sweetalert2";
 const SweetAlert = withSwalInstance(swal);
 const SweetError = withSwalInstance(swal);
+
 const initialState = {
   user: "",
   password: "",
