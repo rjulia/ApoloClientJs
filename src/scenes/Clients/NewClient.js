@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from "react";
+import { withRouter } from "react-router-dom";
 import {Title, Input} from "../../components/Index.components";
 import { NEW_CLIENT} from '../../services/mutations/index.mutations';
 import { Mutation } from "react-apollo";
@@ -8,7 +9,8 @@ import swal from 'sweetalert2';
 const SweetAlert = withSwalInstance(swal);
 const SweetError = withSwalInstance(swal);
 
-export default class NewClient extends Component {
+
+class NewClient extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -20,7 +22,8 @@ export default class NewClient extends Component {
         error: false,
         show: false,
         hasError: false,
-        emails: []
+        emails: [],
+        seller: ''
             
     };
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -67,7 +70,8 @@ export default class NewClient extends Component {
   render() {
     const {error} = this.state
     let respuesta = (error) ? <p className="alert alert-danger p3 text-center"> all fields are required</p> : ''
-
+    const { id } = this.props.session.getUser;
+    console.log(id)
     return (
       <Fragment>
         <Title title="New client" />
@@ -102,7 +106,8 @@ export default class NewClient extends Component {
                   company,
                   emails,
                   type,
-                  years: Number(years)
+                  years: Number(years),
+                  seller: id
                 };
                 setClient({
                     variables: {input}
@@ -217,3 +222,5 @@ export default class NewClient extends Component {
     );
   }
 }
+
+export default withRouter(NewClient)

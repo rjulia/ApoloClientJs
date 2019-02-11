@@ -12,7 +12,6 @@ const App = ({refetch, session}) => {
   const {getUser} = session;
   let name;
   if (getUser) {
-    console.log(getUser)
     name = (getUser.name) ? getUser.name : getUser.user  
   }
   const message = (getUser) ? `Welcolme: ${name}`: <Redirect to="/login"/>;
@@ -26,7 +25,7 @@ const App = ({refetch, session}) => {
               <p className="text-right">{message} </p>
               <Switch>
                 <Route exact path="/" component={Clients}/>
-                <Route exact path="/client/new" component={NewClient}/>
+                <Route exact path="/client/new" render={()=> <NewClient session={session}/> }/>
                 <Route exact path="/client/edit/:id" component={EditClient}/>
                 <Route exact path="/products" component={Products}/>
                 <Route exact path="/product/new" component={NewProduct}/>
