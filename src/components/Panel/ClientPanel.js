@@ -12,7 +12,6 @@ const ClientPanel = () => {
       {({ loading, error, data, refetch }) => {
           if (loading) return <Spinner color={"#18BC9C"} />;
           if (error) return `Error: ${error.message}`;
-          console.log(data)
           return (
             <div className="row mt-5 justify-content-center">
               <BarChartComponent data={data.topClients}/>

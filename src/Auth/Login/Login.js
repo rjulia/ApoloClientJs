@@ -41,22 +41,22 @@ class Login extends Component {
         variables: {user, password}
       }).then( async ({data}) => {console.log('desde then', data);
         localStorage.setItem('tokenGraphl',data.authUser.token)
-      });
-      //ejecutar el query una vez que se haya iniciado sesion
-
-      // limpiar el state
-      this.cleanState()
-      //rediriguir
-      this.props.history.push("/");
-     
+        //ejecutar el query una vez que se haya iniciado sesion
+        await this.props.refetch();
+        // limpiar el state
+        this.cleanState()
+        //rediriguir
+        setTimeout(() => {
+          this.setState({
+            show: true
+          })     
+        }, 3000)
+      }); 
     }
 
      validateForm = () => {
         const {user, password} = this.state;
-
         const noValid = !user || !password;
-
-        console.log(noValid);
         return noValid;
      }
     render() { 
@@ -73,10 +73,7 @@ class Login extends Component {
                         mutation={ AUTH_USER }
                         variables={{user, password}}
                         onCompleted={(e) =>{
-                          console.log('on complete', e)
-                          this.setState({
-                            show: true
-                          })
+                          console.log('on complete', e)                      
                         }}
                         onError={(e) => {
                           this.setState({ 
@@ -132,7 +129,7 @@ class Login extends Component {
                   text="Wellcome Again"
                   onConfirm={() => {
                     this.setState({ show: false });
-                    
+                    this.props.history.push("/panel");
                   }}
                 />
                 <SweetError

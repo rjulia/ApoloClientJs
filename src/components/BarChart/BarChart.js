@@ -13,7 +13,7 @@ class BarChartComponent extends Component {
     }
 
   })
-  console.log(topClientsGrafh)
+
     return (
       <BarChart width={600} height={300} data={topClientsGrafh}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>

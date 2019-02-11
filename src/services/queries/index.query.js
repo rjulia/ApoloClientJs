@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-
+// CLientes
 export const CLIENTS_QUERY = gql`
   query getClients($limit: Int, $offset: Int){
     getClients(limit: $limit, offset: $offset){
@@ -27,8 +27,19 @@ export const CLIENT_QUERY = gql`
       company
     }
 }`
+// clientes graficas
+export const TOP_CLIENTS = gql`
+  query topClients{
+    topClients{
+      total
+      client{
+        namecomplete
+      }
+    }
+  }
+`;
 
-
+//products
 export const PRODUCTS_QUERY = gql`
   query getProducts($limit: Int, $offset: Int, $hasStock: Boolean){
     getProducts(limit: $limit, offset: $offset, hasStock: $hasStock){
@@ -51,6 +62,7 @@ export const PRODUCT_QUERY  = gql`
     }
 }`
 
+//orders
 export const ORDERS_QUERY = gql`
   query getOrders($client: String){
     getOrders(client: $client){
@@ -66,14 +78,16 @@ export const ORDERS_QUERY = gql`
   }
 `;
 
-export const TOP_CLIENTS = gql`
-  query topClients{
-    topClients{
-      total
-      client{
-        namecomplete
-      }
+// Users
+
+export const CURRENT_USER = gql`
+  query getUser{
+    getUser{
+      user
     }
   }
 `;
+
+
+
 
