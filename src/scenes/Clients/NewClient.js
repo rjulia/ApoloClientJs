@@ -71,7 +71,6 @@ class NewClient extends Component {
     const {error} = this.state
     let respuesta = (error) ? <p className="alert alert-danger p3 text-center"> all fields are required</p> : ''
     const { id } = this.props.session.getUser;
-    console.log(id)
     return (
       <Fragment>
         <Title title="New client" />

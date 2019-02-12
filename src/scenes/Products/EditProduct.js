@@ -13,7 +13,6 @@ class EditProduct extends Component {
         <div className="row justify-content-center">
           <Query query={PRODUCT_QUERY} variables={{ id }}>
             {({ loading, error, data, refetch }) => {
-              console.log(data)
               if (loading) return <Spinner color={"#18BC9C"} />;
               if (error) return `Error: ${error.message}`;
               return <FormEditProduct id={id} refetch={refetch} product={data.getProduct}/>; 

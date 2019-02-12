@@ -2,9 +2,9 @@ import React, { Component, Fragment } from "react";
 import { Title, Input, Select } from "../../components/Index.components";
 import { CREATE_USER } from "../../services/mutations/index.mutations";
 import { Mutation } from "react-apollo";
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
-import { withSwalInstance } from "sweetalert2-react";
+import { withSwalInstance,  } from "sweetalert2-react";
 import swal from "sweetalert2";
 const SweetAlert = withSwalInstance(swal);
 const SweetError = withSwalInstance(swal);
@@ -56,7 +56,7 @@ class Register extends Component {
     createUser({
       variables: {user, name, rol, password}
     }).then(
-      data => console.log('desde then', data)
+      
     );
   }
 
@@ -81,14 +81,19 @@ class Register extends Component {
         name: 'Seller'
       }
     ]
+
+    const rolUser = this.props.session.getUser.rol
+    
+    const redirect = (rolUser !== "ADMIN") ? <Redirect to="/"/> : ''
+
     return (
       <Fragment>
+        {redirect}
         <Title title="new user" />
         <div className="row justify-content-center">
           <Mutation
             mutation={CREATE_USER}
             onCompleted={(e) =>{
-              console.log('on complete', e)
               this.setState({
                 show: true
               })

@@ -29,6 +29,7 @@ const GeneratorOrder = (props) => {
                 order: productsInput,
                 total: props.total,		
                 client: props.idClient,
+                seller: props.idSeller
               }
               setOrders({
                 variables: {input}

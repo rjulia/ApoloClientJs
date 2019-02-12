@@ -24,17 +24,17 @@ const App = ({refetch, session}) => {
             <div className="container">
               <p className="text-right">{message} </p>
               <Switch>
-                <Route exact path="/" component={Clients}/>
+                <Route exact path="/" render={()=> <Clients session={session}/> }/>
                 <Route exact path="/client/new" render={()=> <NewClient session={session}/> }/>
                 <Route exact path="/client/edit/:id" component={EditClient}/>
                 <Route exact path="/products" component={Products}/>
                 <Route exact path="/product/new" component={NewProduct}/>
                 <Route exact path="/product/edit/:id" component={EditProduct}/>
-                <Route exact path="/order/new/:id" component={NewOrder}/>
+                <Route exact path="/order/new/:id" render={()=> <NewOrder session={session}/> }/>/>
                 <Route exact path="/orders/:id" component={ListOrders}/> 
                 <Route exact path="/panel" component={Panel}/> 
                 <Route exact path="/login" render={()=> <Login refetch={refetch}/> } /> 
-                <Route exact path="/register" component={Register}/> 
+                <Route exact path="/register" render={()=> <Register session={session}/> }/> 
               </Switch>
             </div>
           </Fragment>

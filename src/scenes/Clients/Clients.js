@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { CLIENTS_QUERY } from "../../services/queries/index.query";
 import { DELETE_CLIENT } from "../../services/mutations/index.mutations";
 
-import {Title, Pagination, Spinner } from "../../components/Index.components";
+import {Title, Pagination, Spinner, Select } from "../../components/Index.components";
 
 import swal from "sweetalert2";
 
@@ -17,6 +17,8 @@ class Clients extends React.Component {
   limit = 5;
   state = {
     show: false,
+    filter: '',
+    value: '',
     pager: {
       current: 1,
       offset: 0 
@@ -39,9 +41,60 @@ class Clients extends React.Component {
         }
     })
   }
+  
+  componentDidUpdate(){
+    if(this.props){
+      const { rol } = this.props.session.getUser
+      let id
+      if (rol === "SELLER") {
+  
+        id = this.props.session.getUser.id;
+        
+      } else {
+        id = ''
+      }
+      this.setState({
+        filter: id,
+        value: id
+      })
+    }
+  }
+
+  handleInputChange = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
+    
+    
+    const options = [
+      {
+        value: '',
+        name: 'Choose'
+      },
+      {
+        value: '',
+        name: 'All'
+      },
+      {
+        value: this.state.value,
+        name: 'Seller'
+      }
+    ]
     return (
-      <Query query={CLIENTS_QUERY} pollInterval={2000} variables={{limit: this.limit, offset: this.state.pager.offset}}>
+      <Query 
+        query={CLIENTS_QUERY} 
+        pollInterval={2000} 
+        variables={{
+          limit: this.limit, 
+          offset: this.state.pager.offset, 
+          seller: this.state.filter
+        }}>
         {({ loading, error, data, starPolling, stopPolling }) => {
           if (loading) return <Spinner color={"#18BC9C"} />;
           if (error) return `Error: ${error.message}`;
@@ -49,6 +102,14 @@ class Clients extends React.Component {
           return (
             <Fragment>
               <Title title="Client List" />
+              <Select
+                title={"Filter clients"}
+                name={"filter"}
+                param={"form-group"}
+                value={this.state.filter}
+                options={options}
+                onChange={this.handleInputChange}
+              />{" "}
               <ul className="list-group mt-4">
                 {list.map(client => {
                   const { id , name, surname} = client;

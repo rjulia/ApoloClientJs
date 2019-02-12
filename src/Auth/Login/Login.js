@@ -39,7 +39,8 @@ class Login extends Component {
       e.preventDefault();
       authUser({
         variables: {user, password}
-      }).then( async ({data}) => {console.log('desde then', data);
+      }).then( async ({data}) => {
+       
         localStorage.setItem('tokenGraphl',data.authUser.token)
         //ejecutar el query una vez que se haya iniciado sesion
         await this.props.refetch();

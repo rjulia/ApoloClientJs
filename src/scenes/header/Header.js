@@ -2,10 +2,11 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import {Title} from "../../components/Index.components";
 import CloseSession from "./CloseSession";
+import { BtnRegister } from "../../Auth/index.auth";
 
 const Header = ({ session }) => {
 
-  let bar = (session.getUser) ? <NavigationAuth/> : <NavigationNoAuth/>
+  let bar = (session.getUser) ? <NavigationAuth session={session}/> : <NavigationNoAuth/>
   return (
   <nav className="navbar navbar-expand-lg navbar-dark bg-primary justify-content-between d-flex mb-4">
     <div className="container">
@@ -19,7 +20,7 @@ const NavigationNoAuth = () => (
   <Title title="CRM" addClass="navbar-brand text-light font-weight-bold"> CRM </Title>
 );
 
-const NavigationAuth = () => (
+const NavigationAuth = (session) => (
   <Fragment>
     <Link to="/" className="navbar-brand text-light font-weight-bold">
       CRM
@@ -69,6 +70,9 @@ const NavigationAuth = () => (
               New Product
             </Link>
           </div>
+        </li>
+        <li className="nav-item dropdown ml-2">
+          <BtnRegister session={session}/>
         </li>
         <li className="nav-item dropdown ml-2">
           <CloseSession/>

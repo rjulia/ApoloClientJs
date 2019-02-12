@@ -26,7 +26,6 @@ const CardOrder = (props) => {
     default:
       break;
   }
-  console.log(classStyle)
   return <div className="col-md-4">
       <div className={`card mb-3 ${classStyle}`}>
         <div className="card-body">

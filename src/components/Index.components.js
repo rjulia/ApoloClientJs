@@ -11,6 +11,8 @@ export { default as Button } from './button/Button';
 export { default as ClientWidget } from './clientwidget/ClientWidget';
 export { default as Panel } from './Panel/Panel';
 export { default as ClientPanel } from './Panel/ClientPanel';
+export { default as SellerPanel } from './Panel/SellerPanel';
+
 export { default as BarChartComponent } from './BarChart/BarChart';
 
 

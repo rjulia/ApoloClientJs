@@ -3,22 +3,41 @@ import {BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend} from 'recha
 
 class BarChartComponent extends Component {
   render() {
+  const typeChart = this.props.typechart;
+  let topGrafh = []
   let data = this.props.data;
-  let topClientsGrafh = []
-  
-  data.map((order, idx) => {
-    return topClientsGrafh[idx] = {
-        ...order.client[0],
-        total: order.total
-    }
 
-  })
+  switch (typeChart) {
+    case "CLIENT":
+        data.map((order, idx) => {
+          return topGrafh[idx] = {
+              ...order.client[0],
+              total: order.total
+          }
+      
+        })
+      break;
+    case "SELLER":
+      data.map((order, idx) => {
+        return topGrafh[idx] = {
+            ...order.seller[0],
+            total: order.total
+        }
+    
+      })
+    break;
+    default:
+      break;
+  }
+  
+  console.log(data)
+  
 
     return (
-      <BarChart width={600} height={300} data={topClientsGrafh}
+      <BarChart width={600} height={300} data={topGrafh}
             margin={{top: 5, right: 30, left: 20, bottom: 5}}>
        <CartesianGrid strokeDasharray="3 3"/>
-       <XAxis dataKey="namecomplete"/>
+       <XAxis dataKey="name"/>
        <YAxis/>
        <Tooltip/>
        <Legend />

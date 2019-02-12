@@ -1,12 +1,13 @@
 import React, {Fragment} from 'react';
-import { Title, ClientPanel } from "../Index.components";
+import { Title, ClientPanel , SellerPanel} from "../Index.components";
 
 const Panel = () => {
   return (
     <Fragment>
-      <Title title='Top 10 cliente que mas compran'/>
+      <Title title='Top 10 Clients'/>
       <ClientPanel/>
-
+      <Title title='Top 10 best Sellers'/>
+      <SellerPanel/>
     </Fragment>
   );
 };

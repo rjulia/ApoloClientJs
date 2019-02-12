@@ -90,6 +90,7 @@ class OrderContentList extends Component {
           products={this.state.products}
           total={this.state.total}
           idClient={this.props.id}
+          idSeller={this.props.idSeller}
         />
 
         </div>
